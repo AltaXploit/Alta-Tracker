@@ -5,13 +5,13 @@ echo "Setting up Alta Bross Location Tracking Tool..."
 
 # Update package list
 echo "[*] Updating package list..."
-sudo apt-get update -y
+apt-get update -y
 
 # Install Python3 and pip if not installed
 echo "[*] Checking for Python3 and pip..."
 if ! command -v python3 &> /dev/null; then
     echo "[!] Python3 is not installed. Installing Python3..."
-    sudo apt-get install python3 python3-pip -y
+    apt-get install python3 python3-pip -y
 else
     echo "[*] Python3 is already installed."
 fi
