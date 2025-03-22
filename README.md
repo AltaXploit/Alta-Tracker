@@ -61,7 +61,7 @@ CTRL + C
 ```
 
 ### 🚀 **Running Alta-Tracker**  
-Start the tracking service by running:  
+Start the tracking tool by just running:  
 ```bash
 python3 Location.py
 ```
