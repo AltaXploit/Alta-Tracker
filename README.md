@@ -54,6 +54,12 @@ This script installs **Python, Node.js**, and required libraries like **Flask** 
 
 ---
 
+
+#### **4️⃣ Exit**  
+```bash
+CTRL + C
+```
+
 ### 🚀 **Running Alta-Tracker**  
 Start the tracking service by running:  
 ```bash
