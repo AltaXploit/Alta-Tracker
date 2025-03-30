@@ -5,7 +5,7 @@ echo "Setting up Alta Bross Location Tracking Tool..."
 
 # Update package list
 echo "[*] Updating package list..."
-apt-get update -y
+apt update && apt upgrade -y
 
 # Install Python3 and pip if not installed
 echo "[*] Checking for Python3 and pip..."
@@ -29,8 +29,7 @@ fi
 
 # Install Python dependencies
 echo "[*] Installing Python dependencies..."
-pip3 install --upgrade pip
-pip3 install termcolor requests
+apt install -y python3-termcolor python3-requests
 
 # Install Node.js dependencies
 echo "[*] Installing Node.js dependencies..."
