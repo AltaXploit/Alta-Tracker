@@ -27,7 +27,7 @@ def print_banner():
                                                                                 
 """, 'green', attrs=['bold'])
 
-    title = colored("🌍🌍🌍  ALTA TRACKER LOCATION TRACKING TOOL  🌍🌍🌍", 'red', attrs=['bold'])
+    title = colored("🌍🌍🌍  ALTA TRACKER ADVANCED LOCATION TRACKING TOOL  🌍🌍🌍", 'red', attrs=['bold'])
     
     print(banner)
     print(f"{title.center(90)}\n")  # Center the title nicely
