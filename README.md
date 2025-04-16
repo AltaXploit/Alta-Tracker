@@ -42,7 +42,7 @@ cd Alta-Tracker
 #### **2️⃣ Set Executable Permissions**  
 Before running, you need to allow the installer script to execute:  
 ```bash
-chmod +x requirments.sh 
+chmod +x requirements.sh
 ```
 
 #### **3️⃣ Install Dependencies**  
