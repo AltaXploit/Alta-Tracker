@@ -3,10 +3,6 @@
 # Print the welcome message
 echo "Setting up Alta Bross Location Tracking Tool..."
 
-# Update package list
-echo "[*] Updating package list..."
-apt update && apt upgrade -y
-
 # Install Python3 and pip if not installed
 echo "[*] Checking for Python3 and pip..."
 if ! command -v python3 &> /dev/null; then
