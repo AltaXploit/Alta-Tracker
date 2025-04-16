@@ -34,4 +34,4 @@ npm install express socket.io axios ua-parser-js useragent geoip-lite figlet cha
 # Final instructions
 echo "[*] Installation complete!"
 echo "Now you can run the tool by executing: python3 Location.py"
-echo "Remember to start the server using: node track.js for the tracking to work."
+
